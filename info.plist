@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string></string>
+	<key>connections</key>
+	<dict>
+		<key>20694ED3-74F0-48E6-9088-C0852700268F</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>D00BF8BA-CC3E-42A7-A38F-24112C950A52</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>2D8CBDFF-40C2-4549-B2B2-05CF72AC49A4</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>D00BF8BA-CC3E-42A7-A38F-24112C950A52</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>9E97B30E-BF23-441F-ADAC-3AD727A89B6A</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>0A49AAB2-0774-42FE-908C-6F476D57E9EE</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>D00BF8BA-CC3E-42A7-A38F-24112C950A52</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>F2BAF4EF-FB97-437A-8C6C-4FD14557231F</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>D00BF8BA-CC3E-42A7-A38F-24112C950A52</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+	</dict>
+	<key>createdby</key>
+	<string>Marc Otten</string>
+	<key>description</key>
+	<string>cmd opens a terminal</string>
+	<key>disabled</key>
+	<false/>
+	<key>name</key>
+	<string>cmd</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>autopaste</key>
+				<false/>
+				<key>clipboardtext</key>
+				<string>{query}</string>
+				<key>ignoredynamicplaceholders</key>
+				<false/>
+				<key>transient</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.clipboard</string>
+			<key>uid</key>
+			<string>0A49AAB2-0774-42FE-908C-6F476D57E9EE</string>
+			<key>version</key>
+			<integer>3</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>alfredfiltersresults</key>
+				<false/>
+				<key>alfredfiltersresultsmatchmode</key>
+				<integer>0</integer>
+				<key>argumenttreatemptyqueryasnil</key>
+				<false/>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>escaping</key>
+				<integer>68</integer>
+				<key>keyword</key>
+				<string>history</string>
+				<key>queuedelaycustom</key>
+				<integer>3</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<true/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
+				<key>runningsubtext</key>
+				<string>Loading results...</string>
+				<key>script</key>
+				<string>on run argv
+    set query to item 1 of argv
+	
+    if query is "" then
+        set jsonOutput to "{\"items\": [{\"title\": \"No notes found\", \"subtitle\": \"Try a different query?\", \"valid\": false, \"icon\": {\"path\": \"/System/Library/CoreServices/CoreTypes.bundle/Contents/Resources/AlertCautionIcon.icns\"}}]}"
+        return jsonOutput
+    else
+        set jsonOutput to do shell script "./historysearch " &amp; quoted form of query
+        return jsonOutput
+    end if
+
+end run</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>subtext</key>
+				<string></string>
+				<key>title</key>
+				<string>showing history</string>
+				<key>type</key>
+				<integer>6</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>9E97B30E-BF23-441F-ADAC-3AD727A89B6A</string>
+			<key>version</key>
+			<integer>3</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string>{query}</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.terminalcommand</string>
+			<key>uid</key>
+			<string>D00BF8BA-CC3E-42A7-A38F-24112C950A52</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>alfredfiltersresults</key>
+				<false/>
+				<key>alfredfiltersresultsmatchmode</key>
+				<integer>0</integer>
+				<key>argumenttreatemptyqueryasnil</key>
+				<false/>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>escaping</key>
+				<integer>68</integer>
+				<key>keyword</key>
+				<string>ping</string>
+				<key>queuedelaycustom</key>
+				<integer>3</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<true/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
+				<key>runningsubtext</key>
+				<string>Loading results...</string>
+				<key>script</key>
+				<string>on run argv
+	
+	set jsonOutput to do shell script "./historysearch " &amp; "ping"
+    return jsonOutput
+
+end run</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>subtext</key>
+				<string></string>
+				<key>title</key>
+				<string>showing history</string>
+				<key>type</key>
+				<integer>6</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>F2BAF4EF-FB97-437A-8C6C-4FD14557231F</string>
+			<key>version</key>
+			<integer>3</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>alfredfiltersresults</key>
+				<false/>
+				<key>alfredfiltersresultsmatchmode</key>
+				<integer>0</integer>
+				<key>argumenttreatemptyqueryasnil</key>
+				<false/>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>escaping</key>
+				<integer>68</integer>
+				<key>keyword</key>
+				<string>ssh</string>
+				<key>queuedelaycustom</key>
+				<integer>3</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<true/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
+				<key>runningsubtext</key>
+				<string>Loading results...</string>
+				<key>script</key>
+				<string>on run argv
+	
+	set jsonOutput to do shell script "./historysearch " &amp; "ssh"
+    return jsonOutput
+
+end run</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>subtext</key>
+				<string></string>
+				<key>title</key>
+				<string>showing history</string>
+				<key>type</key>
+				<integer>6</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>2D8CBDFF-40C2-4549-B2B2-05CF72AC49A4</string>
+			<key>version</key>
+			<integer>3</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>keyword</key>
+				<string>cmd</string>
+				<key>subtext</key>
+				<string></string>
+				<key>text</key>
+				<string>Give the complete cmd command</string>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>20694ED3-74F0-48E6-9088-C0852700268F</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string># Visualcode</string>
+	<key>uidata</key>
+	<dict>
+		<key>0A49AAB2-0774-42FE-908C-6F476D57E9EE</key>
+		<dict>
+			<key>xpos</key>
+			<real>595</real>
+			<key>ypos</key>
+			<real>15</real>
+		</dict>
+		<key>20694ED3-74F0-48E6-9088-C0852700268F</key>
+		<dict>
+			<key>xpos</key>
+			<real>165</real>
+			<key>ypos</key>
+			<real>525</real>
+		</dict>
+		<key>2D8CBDFF-40C2-4549-B2B2-05CF72AC49A4</key>
+		<dict>
+			<key>xpos</key>
+			<real>160</real>
+			<key>ypos</key>
+			<real>360</real>
+		</dict>
+		<key>9E97B30E-BF23-441F-ADAC-3AD727A89B6A</key>
+		<dict>
+			<key>xpos</key>
+			<real>155</real>
+			<key>ypos</key>
+			<real>55</real>
+		</dict>
+		<key>D00BF8BA-CC3E-42A7-A38F-24112C950A52</key>
+		<dict>
+			<key>xpos</key>
+			<real>595</real>
+			<key>ypos</key>
+			<real>135</real>
+		</dict>
+		<key>F2BAF4EF-FB97-437A-8C6C-4FD14557231F</key>
+		<dict>
+			<key>xpos</key>
+			<real>155</real>
+			<key>ypos</key>
+			<real>210</real>
+		</dict>
+	</dict>
+	<key>userconfigurationconfig</key>
+	<array/>
+	<key>version</key>
+	<string>1.0.0</string>
+	<key>webaddress</key>
+	<string>https://github.com/Marcuzzz/visualcode_alfred_actions</string>
+</dict>
+</plist>
