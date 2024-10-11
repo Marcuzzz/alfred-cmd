@@ -17,21 +17,37 @@ function searchHistory(query) {
     // Use a regular expression to extract the command part
     const commandRegex = /^(.+)/;
 
-    // Search for the query in the history
     const matchingCommands = history
-      .map(line => line.match(commandRegex))
-      .filter(match => match && match[1].includes(query))
-      .map(match => match[1]);
+    .map(line => {
+      // Split each line at the semicolon
+      const parts = line.split(';');
+      if (parts.length > 1) {
+        const command = parts[1].trim();  // Trim any extra whitespace
+        if (!command.includes('node app.js ssh demo5') ){
+         return command;  // Return the command part
+        }
+      }
+      return null;  // Return null for lines that don't have a command part
+    })
+    .filter(command => command && command.includes(query));  // Only include valid commands that match the query
+  
+    // Remove duplicates
+    const uniqueMatchingCommands = matchingCommands.filter((command, index, self) => {
+      return self.indexOf(command) === index;
+    });
 
-    if (matchingCommands.length > 0) {
+    //console.log(uniqueMatchingCommands)
+  
+
+    if (uniqueMatchingCommands.length > 0) {
       //console.log('Matching commands in history:');
       
       console.log(JSON.stringify({
-        "items": matchingCommands.map(command => ({
-          title: `${command.split(';')[1]}`,
-          subtitle: `...`,
+        "items": uniqueMatchingCommands.map(command => ({
+          title: `${command}`,
+          subtitle: ``,
           valid: true,
-          arg: `${command.split(';')[1]}`,
+          arg: `${command}`,
           icon: { path: "/System/Library/CoreServices/CoreTypes.bundle/Contents/Resources/AlertCautionIcon.icns" }
         }))
       }));
@@ -53,5 +69,6 @@ function searchHistory(query) {
 }
 
 // Example usage
-const searchTerm = process.argv[2]; // Get the search term from command line arguments
+const searchTerm = process.argv.slice(2).join(" ");
+ // Get the search term from command line arguments
 searchHistory(searchTerm || ''); // If no search term is provided, default to an empty string
